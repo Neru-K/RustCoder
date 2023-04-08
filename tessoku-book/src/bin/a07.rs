@@ -7,23 +7,18 @@ fn main() {
         lr:[[usize;2];n],
     }
 
-    let mut b: Vec<isize> = vec![0; d];
-    //let mut result: Vec<usize> = vec![0; d];
-
-    println!("{:?}", b);
+    let mut b: Vec<isize> = vec![0; d + 1];
 
     for i in 0..n {
-        println!("lr[i][0]{}", lr[i][0]);
         b[lr[i][0] - 1] += 1;
-        println!("lr[i][0]{}", lr[i][1]);
-        b[lr[i][1] - 1] -= 1;
-
-        println!("{:?}", b);
+        b[lr[i][1]] -= 1;
     }
 
-    //result[0] = b[0];
+    for j in 1..d {
+        b[j] += b[j - 1];
+    }
 
-    for j in 1..=d {
-        println!("{}", b[j - 1] + b[j]);
+    for k in 0..b.len() - 1 {
+        println!("{}", b[k]);
     }
 }
